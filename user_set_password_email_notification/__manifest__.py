@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Send Email Notification on Password Change",
+    'name': "Send Email Notification to set Password",
 
     'summary': """
-        Send email notification when password changes or user created""",
+        Send email notification to set password when user created""",
 
     'description': """
-        Send email notification when password changes or user created
+        Automatically Send email notification to set password when user created
     """,
 
     'author': "Ubaid ur Rehman",
@@ -26,7 +26,7 @@
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'views/views.xml',
+        #'views/views.xml',
        # 'views/templates.xml',
     ],
     # only loaded in demonstration mode
