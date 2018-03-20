@@ -1,0 +1,22 @@
+<odoo>
+    <record model="ir.ui.view" id="product_tempalte_view_for_customer">
+    <field name="name">product.tempalte.tree.view2</field>
+    <field name="model">product.template</field>
+    <field name="priority" eval="20"/>
+    <!-- <field name="type">form</fiel> -->
+    <field name="arch" type="xml">
+        <tree string="Product">
+                <field name="sequence" widget="handle"/>
+                <field name="default_code"/>
+                <field name="name"/>
+                <field name="list_price"/>
+                <field name="standard_price"/>
+                <field name="categ_id"/>
+                <field name="type"/>
+                <field name="uom_id" options="{'no_open': True, 'no_create': True}" groups="product.group_uom"/>
+                <field name="active" invisible="1"/>
+                <button name="view_invoices_of_product" string="view" class="oe_stat_button" icon="fa-eye" type="object"/>
+            </tree>
+    </field>
+</record>
+</odoo>

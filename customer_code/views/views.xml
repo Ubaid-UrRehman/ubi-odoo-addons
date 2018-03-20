@@ -1,0 +1,29 @@
+<odoo>
+  <data>
+    <record id="view_partner_form_inherit" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form//group[1]" position="before">
+                  <group name="code">
+                    <group>
+                      <label for="unique_id" string="Code" attrs="{'invisible': [('customer', '=', False)]}"/>
+                      <field name="unique_id" attrs="{'invisible': [('customer', '=', False)],'required': [('customer', '!=', False)]}" nolabel="1"/>
+                  </group>
+                </group>
+                </xpath>
+        </field>
+    </record>
+    <record id="view_res_partner_filter" model="ir.ui.view">
+       <field name="name">res.partner.select</field>
+       <field name="model">res.partner</field>
+       <field name="inherit_id" ref="base.view_res_partner_filter"/>
+       <field name="arch" type="xml">
+           <field name="user_id" position="after">
+               <field string="Code" name="unique_id"/>
+           </field>
+        </field>
+   </record>
+  </data>
+</odoo>

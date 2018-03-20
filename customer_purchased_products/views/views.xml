@@ -1,0 +1,25 @@
+<odoo>
+  <data>
+    <record id="view_partner_form_product_count" model="ir.ui.view">
+            <field name="name">res.partner.form.product.count</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+              <div name="button_box" position="inside">
+                    <button type="object"
+                        class="oe_stat_button"
+                        id="product_button"
+                        icon="fa-product-hunt"
+                        name="open_partner_product_buying_history"
+                        attrs="{'invisible': [('customer', '=', False)]}"
+                        context="{'default_partner_id': active_id}">
+                        <div class="o_form_field o_stat_info">
+                            <span class=""><field name="total_product_count"/></span>
+                            <span class="o_stat_text">Products</span>
+                        </div>
+                    </button>
+                </div>
+        </field>
+    </record>
+  </data>
+</odoo>
