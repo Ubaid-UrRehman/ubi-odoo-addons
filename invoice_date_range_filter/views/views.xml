@@ -1,0 +1,79 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    
+    <record model="ir.ui.view" id="account_invoice_inherit_form1">
+      <field name="name">account.invoice.form.inherit1</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.invoice_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//form//group[1]" position="after">
+          <group name="subscription_group">
+            <group>
+              <field name="subscription"/>
+            </group>
+            <group>
+              <field name="date_from" attrs="{'invisible': [('subscription', '=', False)], 'required': [('subscription', '=', True)]}"/>
+              <field name="date_to" attrs="{'invisible': [('subscription', '=', False)], 'required': [('subscription', '=', True)]}"/>
+            </group>
+          </group>
+        </xpath>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="account_invoice_inherit_search_filter1">
+      <field name="name">account.invoice.form.inherit.search.filter1</field>
+      <field name="model">account.invoice</field>
+      <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+      <field name="arch" type="xml">
+        <xpath expr="//filter[@name='late']" position="after">
+          <separator/>
+          <filter name="expiry" string="Subscription near to Expiry" context="{'filter_subscription_expiry': True}" />
+          <filter string="Subscription Start" context="{'group_by':'date_from'}"/>
+          <filter string="Subscription End" context="{'group_by':'date_to'}"/>
+        </xpath>
+      </field>
+    </record>
+    
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="invoice_date_range_filter.action_window">
+      <field name="name">invoice_date_range_filter window</field>
+      <field name="res_model">invoice_date_range_filter.invoice_date_range_filter</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="invoice_date_range_filter.action_server">
+      <field name="name">invoice_date_range_filter server</field>
+      <field name="model_id" ref="model_invoice_date_range_filter_invoice_date_range_filter"/>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="invoice_date_range_filter" id="invoice_date_range_filter.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="invoice_date_range_filter.menu_1" parent="invoice_date_range_filter.menu_root"/>
+    <menuitem name="Menu 2" id="invoice_date_range_filter.menu_2" parent="invoice_date_range_filter.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="invoice_date_range_filter.menu_1_list" parent="invoice_date_range_filter.menu_1"
+              action="invoice_date_range_filter.action_window"/>
+    <menuitem name="Server to list" id="invoice_date_range_filter" parent="invoice_date_range_filter.menu_2"
+              action="invoice_date_range_filter.action_server"/>
+    -->
+  </data>
+</odoo>

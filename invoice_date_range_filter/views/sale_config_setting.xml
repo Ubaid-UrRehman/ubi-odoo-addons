@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <record id="view_sales_config_dates_form" model="ir.ui.view">
+            <field name="name">Sales.Setting.Dates</field>
+            <field name="model">sale.config.settings</field>
+            <field name="inherit_id" ref="sale.view_sales_config"/>
+            <field name="arch" type="xml">
+                <xpath expr="//form//group[1]" position="after">
+                <!-- <label for="sale_pricelist_setting" position="before"> -->
+                    <group name="date_range_setting_group" string="Invoice Subscription Dates">
+                        <group>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                        </group>
+                    </group>
+                </xpath>
+               <!--  </label> -->
+            </field>
+        </record>
+   
+    </data>
+</odoo>
