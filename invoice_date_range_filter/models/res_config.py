@@ -5,15 +5,9 @@ from odoo import api, fields, models, _
 class SaleConfigSettings(models.TransientModel):
     _inherit = 'sale.config.settings'
 
-    date_start = fields.Date(string='Start date', required=False)
-    date_end = fields.Date(string='End date', required=False)
+    no_days = fields.Integer(string='Number of Days', required=False)
 
     @api.multi
-    def set_date_start_defaults(self):
+    def set_no_days_defaults(self):
         return self.env['ir.values'].sudo().set_default(
-            'sale.config.settings', 'date_start', self.date_start)
-
-    @api.multi
-    def set_date_end_defaults(self):
-        return self.env['ir.values'].sudo().set_default(
-            'sale.config.settings', 'date_end', self.date_end)
+            'sale.config.settings', 'no_days', self.no_days)
