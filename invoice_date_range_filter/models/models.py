@@ -31,4 +31,9 @@ class AccountInvoice(models.Model):
                 args.append(['id','in',result])
 
         return super(AccountInvoice, self).search(args, offset, limit, order, count)
-    
+
+    @api.onchange('subscription')
+    def set_dates_fields_empty(self):
+        if not self.subscription:
+            self.date_from = ''
+            self.date_to = ''
