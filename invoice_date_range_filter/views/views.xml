@@ -28,6 +28,8 @@
         <xpath expr="//filter[@name='late']" position="after">
           <separator/>
           <filter name="expiry" string="Subscription near to Expiry" context="{'filter_subscription_expiry': True}" />
+          <filter name="pay_before" string="Paid before Subscription Expire" context="{'filter_pay_before_subscription_expiry': True}" />
+          <filter name="pay_after" string="Paid after Subscription Expire" context="{'filter_pay_after_subscription_expiry': True}" />
           <filter string="Subscription Start" context="{'group_by':'date_from'}"/>
           <filter string="Subscription End" context="{'group_by':'date_to'}"/>
         </xpath>

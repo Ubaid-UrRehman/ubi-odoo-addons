@@ -9,6 +9,7 @@ class AccountInvoice(models.Model):
     subscription = fields.Boolean(default=True)
     date_from = fields.Date('From')
     date_to = fields.Date("To")
+    paying_date = fields.Date("Paying Date")
 
     @api.model
     def search(self, args, offset=0, limit=None, order=None, count=False):
@@ -29,6 +30,28 @@ class AccountInvoice(models.Model):
                 args = [['id','in',result]]
             else:
                 args.append(['id','in',result])
+        if 'filter_pay_before_subscription_expiry' in self._context:
+            query_serach = "select id from account_invoice where paying_date < date_from;"
+            self._cr.execute(query_serach)
+            invoices = self._cr.fetchall()
+            for ids in invoices:
+                result.append(ids[0])
+            if not args:
+                args = [['id','in',result]]
+            else:
+                args.append(['id','in',result])
+                args.append(['id','in',result])
+        if 'filter_pay_after_subscription_expiry' in self._context:
+            query_serach = "select id from account_invoice where paying_date >= date_from and paying_date <= date_to;"
+            self._cr.execute(query_serach)
+            invoices = self._cr.fetchall()
+            for ids in invoices:
+                result.append(ids[0])
+            if not args:
+                args = [['id','in',result]]
+            else:
+                args.append(['id','in',result])
+
 
         return super(AccountInvoice, self).search(args, offset, limit, order, count)
 
@@ -37,3 +60,14 @@ class AccountInvoice(models.Model):
         if not self.subscription:
             self.date_from = ''
             self.date_to = ''
+
+class AccountPayment(models.Model):
+    _inherit = "account.payment"
+
+
+    @api.model
+    def create(self, values):
+        if values.get('communication', None):
+            invoice = self.env["account.invoice"].search([('number','=', values.get('communication'))])
+            invoice.write({'paying_date':values.get('payment_date')})
+        return super(AccountPayment, self).create(values)
