@@ -2,7 +2,7 @@
 
 {
     'name': 'Google Maps',
-    'version': '1.0',
+    'version': '8.0',
     'category': 'Extra Tools',
     'description': """This module adds a Map button on the partner’s form in order to open its address directly in the Google Maps view""",
     'author': 'Ubaid ur Rehman <ubaidur.rehman018@yahoo.com>',

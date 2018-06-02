@@ -4,14 +4,14 @@
     'name': 'Invoice Summary Report XLSX',
     'version': '0.1',
     'category': 'Accounting',
-    'summary': 'Invoice Analysis Report',
+    'summary': 'Invoice Analysis Report in xlsx',
     'license':'LGPL-3',
     'description': """
-    Invoice Summary Report
+    Invoice Summary Report in xlsx
 """,
     'author' : 'Ubaid ur Rehman <ubaidur.rehman018@yahoo.com>',
     'depends': ['account'],
-    'images': ['static/description/banner.jpg'],
+    'images': [],
     'data': [
         'wizard/print_invoice_summary_view.xml'
     ],
