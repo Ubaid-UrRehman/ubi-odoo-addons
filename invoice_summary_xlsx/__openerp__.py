@@ -2,7 +2,7 @@
 
 {
     'name': 'Invoice Summary Report XLSX',
-    'version': '0.1',
+    'version': '8.0.1.0.0',
     'category': 'Accounting',
     'summary': 'Invoice Analysis Report in xlsx',
     'license':'LGPL-3',
